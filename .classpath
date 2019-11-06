@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_121"/>
+	<classpathentry kind="lib" path="H:/ovgu sem-2/IR/lucene-8.3.0/core/lucene-core-8.3.0.jar"/>
+	<classpathentry kind="lib" path="H:/ovgu sem-2/IR/lucene-8.3.0/analysis/common/lucene-analyzers-common-8.3.0.jar"/>
+	<classpathentry kind="lib" path="H:/ovgu sem-2/IR/lucene-8.3.0/queryparser/lucene-queryparser-8.3.0.jar"/>
+	<classpathentry kind="lib" path="H:/ovgu sem-2/IR/lucene-8.3.0/demo/lucene-demo-8.3.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
