@@ -2,6 +2,10 @@ package ovgu.ir;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -15,6 +19,8 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.MMapDirectory;
+import org.tartarus.snowball.ext.PorterStemmer;
 
 public class SearchDocs {
 
@@ -22,7 +28,7 @@ public class SearchDocs {
 	public void search(String INDEX_DIR, String queryString, boolean useBM25Okapi, String field) throws Exception {
 		
 		// has been Paths.get(index) - commented out in line 35
-		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(INDEX_DIR)));
+		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(System.getProperty("user.dir"),INDEX_DIR)));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		Analyzer analyzer = new StandardAnalyzer();
 
@@ -43,8 +49,17 @@ public class SearchDocs {
 			
 			Query query = parser.parse(queryString);
 			System.out.println("Searching for: " + query.toString(field));
-
-			doPagingSearch(scan, searcher, query, 10, true);
+			TextStemmer tx = new TextStemmer();
+			List<String> ls = new ArrayList<String>();
+			ls.add(query.toString());
+			List<String> stemList = new ArrayList<String>();
+			stemList = tx.getStemmedValue(ls);
+			StringBuilder sb = new StringBuilder();
+			for (String object : stemList) {
+				sb.append(object+" ");
+			}
+			Query stemQuery = parser.parse(sb.toString());
+			doPagingSearch(scan, searcher, stemQuery, 10, true);
 
 			queryString = "";
 		}
@@ -58,7 +73,7 @@ public class SearchDocs {
 		TopDocs results = searcher.search(query, 5 * hitsPerPage);
 		ScoreDoc[] hits = results.scoreDocs;
 
-		int numTotalHits = Math.toIntExact(results.totalHits);
+		int numTotalHits = Math.toIntExact(results.totalHits.value);
 		System.out.println(numTotalHits + " total matching documents");
 
 		int start = 0;
@@ -86,12 +101,18 @@ public class SearchDocs {
 				}*/
 
 				Document doc = searcher.doc(hits[i].doc);
-				String path = doc.get("filePath");
+				String path = doc.get("ActualPath");
 				if (path != null) {
-					System.out.println((i + 1) + ". " + path);
+					System.out.println("Rank: " + (i + 1) + "--Path: " + path);
 					String title = doc.get("title");
-					if (title != null) {
+					if (title != null && !title.isEmpty()) {
 						System.out.println("   Title: " + doc.get("title"));
+					}
+					String modified = doc.get("modified");
+					if (modified != null) {
+						Date d = new Date(Long.parseLong(modified) );
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						System.out.println("   Last Modified: " + sdf.format(d));
 					}
 				} else {
 					System.out.println((i + 1) + ". " + "No path for this document");

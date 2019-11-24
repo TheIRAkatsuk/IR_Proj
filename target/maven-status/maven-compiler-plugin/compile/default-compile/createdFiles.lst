@@ -1,6 +1,8 @@
 ovgu\ir\TextStemmer.class
 ovgu\ir\SearchDocs.class
 ovgu\ir\ParseHTMLDocs.class
+ovgu\ir\ParseTextDocs.class
+ovgu\ir\FilterDocs.class
 ovgu\ir\Main.class
 ovgu\ir\Index.class
 ovgu\ir\ParseDocs.class
