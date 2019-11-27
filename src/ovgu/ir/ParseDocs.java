@@ -1,7 +1,6 @@
 package ovgu.ir;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -39,7 +38,7 @@ return list;
 				if (Files.isRegularFile(filePath)) {
 					try {
 						
-						Long lastModified = 0L;;
+						Long lastModified = 0L;
 						FilterDocs filter = new FilterDocs();
 						String title = "";
 						
@@ -60,9 +59,15 @@ return list;
 						}
 						Model model = new Model();
 						model.setActualPath(System.getProperty("user.dir")+"\\"+filePath);
-						
-						model.setModified(lastModified);
-						model.setTitle(title);
+						Date dt = new Date(lastModified);
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						model.setModified(sdf.format(dt).toString());
+						TextStemmer ts = new TextStemmer();
+						List<String> ls = new ArrayList<>();
+						ls.add(title);
+						List<String> result = ts.getStemmedValue(ls);
+						model.setTitle(result.isEmpty()?"":result.get(0));
+						model.setActTitle(title);
 						list.add(model);
 //						Index index = new Index();
 //						index.index(Constants.INDEX_PATH,filePath.getFileName().toString() , Constants.OPEN_MODE,lastModified,title,System.getProperty("user.dir")+"/docs"+filePath.getFileName());

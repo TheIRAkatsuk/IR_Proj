@@ -3,11 +3,8 @@ package ovgu.ir;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -25,8 +22,8 @@ public class ParseHTMLDocs {
 		String[] arr = filePath.toString().split("\\\\");
 		parseHTML(filePath);
 		fileList.add(readBodyContent());
-		Date d = new Date(lastModified);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Date d = new Date(lastModified);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		//System.out.println("Last Modified date is : " + sdf.format(d));
 		TextStemmer ts = new TextStemmer();
 		List<String> result = ts.getStemmedValue(fileList);

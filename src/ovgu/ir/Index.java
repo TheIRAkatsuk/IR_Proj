@@ -1,7 +1,6 @@
 package ovgu.ir;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,14 +17,13 @@ import java.util.List;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.store.FSDirectory;
 
 public class Index {
 	
@@ -51,7 +49,8 @@ public class Index {
     				if(filter.checkDocType(file).equals("text") || filter.checkDocType(file).equals("html")){
     					String title= "";
     					String actPath= "";
-    					Long modified= 0L;
+    					String acttitle= "";
+    					String modified= "";
     					for (Model model : list) {
     						String[] arr = model.getActualPath().toString().split("\\\\");
     						String[] toCheck = file.toString().split("\\\\");
@@ -59,6 +58,7 @@ public class Index {
 								title=model.getTitle();
 								actPath= model.getActualPath();
 								modified= model.getModified();
+								acttitle= model.getActTitle();
 								break;
 							}
 						}
@@ -66,8 +66,9 @@ public class Index {
     				Field pathField = new StringField("path", file.toString(), Field.Store.YES);
     				doc.add(pathField);
     				doc.add(new StringField("title", title , Field.Store.YES));
+    				doc.add(new StringField("Acttitle", acttitle , Field.Store.YES));
     				doc.add(new StringField("ActualPath", actPath , Field.Store.YES));
-    				doc.add(new StringField("modified",modified.toString() ,Field.Store.YES));
+    				doc.add(new StringField("modified",modified ,Field.Store.YES));
     				doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
     				if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
     					System.out.println("adding " + file);
@@ -82,7 +83,7 @@ public class Index {
         		}
         	});
 		}
-    		
+    		writer.close();
     	
 
 	}
