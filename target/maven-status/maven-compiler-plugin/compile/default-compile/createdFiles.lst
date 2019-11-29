@@ -3,7 +3,9 @@ ovgu\ir\SearchDocs.class
 ovgu\ir\ParseHTMLDocs.class
 ovgu\ir\ParseTextDocs.class
 ovgu\ir\FilterDocs.class
+ovgu\ir\Index$1.class
 ovgu\ir\Main.class
+ovgu\ir\Model.class
 ovgu\ir\Index.class
 ovgu\ir\ParseDocs.class
 ovgu\ir\Tokenizer.class

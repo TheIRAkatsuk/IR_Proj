@@ -21,7 +21,7 @@ import org.apache.lucene.store.FSDirectory;
 public class SearchDocs {
 
 	/** Simple command-line based search demo. */
-	public void search(String INDEX_DIR, String queryString, boolean useBM25Okapi, String field) throws Exception {
+	public void search(String INDEX_DIR, String queryString, boolean value, String field) throws Exception {
 
 		// has been Paths.get(index) - commented out in line 35
 		IndexReader reader = DirectoryReader

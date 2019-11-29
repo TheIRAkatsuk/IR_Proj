@@ -1,10 +1,11 @@
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\FilterDocs.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\SearchDocs.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\ParseHTMLDocs.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\Tokenizer.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\TextStemmer.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\ParseDocs.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\ParseTextDocs.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\Constants.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\Index.java
-H:\ovgu sem-2\IR\task\IR_Proj\IR_Proj\src\ovgu\ir\Main.java
+C:\Users\user\IRProj\src\ovgu\ir\TextStemmer.java
+C:\Users\user\IRProj\src\ovgu\ir\Model.java
+C:\Users\user\IRProj\src\ovgu\ir\ParseDocs.java
+C:\Users\user\IRProj\src\ovgu\ir\ParseTextDocs.java
+C:\Users\user\IRProj\src\ovgu\ir\Main.java
+C:\Users\user\IRProj\src\ovgu\ir\FilterDocs.java
+C:\Users\user\IRProj\src\ovgu\ir\ParseHTMLDocs.java
+C:\Users\user\IRProj\src\ovgu\ir\SearchDocs.java
+C:\Users\user\IRProj\src\ovgu\ir\Constants.java
+C:\Users\user\IRProj\src\ovgu\ir\Index.java
+C:\Users\user\IRProj\src\ovgu\ir\Tokenizer.java
